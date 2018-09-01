@@ -12,48 +12,12 @@
     <!-- BOOSTRAP -- JS -->
     <script src="bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
 
+    <script defer src="fontawesome-free-5.3.1-web/js/all.js"></script>
 
-<script type="text/javascript">
-//<![CDATA[
-function valor_celda(celda){
-alert(celda.innerHTML);
-}
-window.onload = function(){
-var tags_td = new Array();
-var tags_td=document.getElementsByTagName('td');
-for (i=0; i<tags_td.length; i++) {
-            if (tags_td[i].addEventListener) {   // IE9 y el resto
-                tags_td[i].addEventListener ("click", function () {valor_celda(this)}, false);
-            } 
-            else {
-                if (tags_td[i].attachEvent) {    // IE9 -
-//                    tags_td[i].attachEvent ('onclick',  function () {valor_celda(this)}, false);
-   tags_td[i].setAttribute('onclick', 'valor_celda(this)');                 
-                    
-                }
-            }
-}
-}
- 
-//]]>
-</script>
-
-
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>            
     <!-- CONECTAR CON EL SERVIDOR -->
     <?php
-        error_reporting(E_ALL ^ E_NOTICE);
-        $servername = "127.0.0.1";
-        $database = "SPPV";
-        $username = "root";
-        $password = "";
-        // Crear conexion
-        $conn = mysqli_connect($servername, $username, $password, $database);
-        // Chequean conexion
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
+      include 'server.php';
     ?>
 
 </head>
@@ -202,41 +166,36 @@ for (i=0; i<tags_td.length; i++) {
                     <th>Procedencia</th>
                 </tr>
             </thead>
+
+            <!-- INICIO BUSQUEDA -->
             <?php
-             error_reporting(E_ALL ^ E_NOTICE);
-             $servername = "127.0.0.1";
-             $database = "SPPV";
-             $username = "root";
-             $password = "";
-             // Crear conexion
-             $conn = mysqli_connect($servername, $username, $password, $database);
-             // Chequean conexion
-             if (!$conn) {
-                 die("Connection failed: " . mysqli_connect_error());
-             }
+            require 'server.php';
+
             $sppv = "SELECT * FROM ingreso order by id_ingreso DESC";
             $result = $conn->query($sppv) or die (mysqli_error($conn));
             ?>
+            <!-- FIN BUSQUEDA -->
 
-            <!-- INICIO JQ -->
-            
-
-            <!-- FIN JQ -->
-            <tbody class="menu">
-            <?php while ($row=$result->fetch_assoc()) {
+            <tbody>
+            <?php
+              while ($row=$result->fetch_assoc()) 
+              {
                 echo "<tr>";
-                    echo "<td onclick='valor_celda(this)'>"; echo $row['id_ingreso']; "</td>";
-                    echo "<td>"; echo $row['nom_ing']; "</td>";
-                    echo "<td>"; echo $row['app_ing']; "</td>";
-                    echo "<td>"; echo $row['lpu_ing']; "</td>";
-                    echo "<td>"; echo $row['edad_ing']; "</td>";
-                    echo "<td>"; echo $row['sexo_ing']; "</td>";
-                    echo "<td>"; echo $row['org_ing']; "</td>";
+                  echo "<td>"; echo $row['id_ingreso']; echo"</td>";
+                  echo "<td>"; echo $row['nom_ing'];  echo"</td>";
+                  echo "<td>"; echo $row['app_ing'];  echo"</td>";
+                  echo "<td>"; echo $row['lpu_ing'];  echo"</td>";
+                  echo "<td>"; echo $row['edad_ing'];  echo"</td>";
+                  echo "<td>"; echo $row['sexo_ing'];  echo"</td>";
+                  echo "<td>"; echo $row['org_ing'];  echo"</td>";
+                  echo "<td align='center'> <a href='modif_int.php?id_ingreso=".$row['id_ingreso']."'><i class='fas fa-edit'></i></a>
+                  <a href='#'><i class='fas fa-trash-alt'></i></a></td>";
                 echo "</tr>";
-            } ?>
+              }
+            ?>
+
             </tbody>
         </table>
-
 <!-- /// INICIO CAJA TABLA DE INTERNOS /// --------------------------------------------------------->
     </div>        
 </body>
