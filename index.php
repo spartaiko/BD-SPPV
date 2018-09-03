@@ -19,185 +19,63 @@
     <?php
       include 'server.php';
     ?>
-
+    <!-- TOOLTIP - TEXTO LEYENDA -->
+    <script>
+      $(document).ready(function(){
+          $('[data-toggle="tooltip"]').tooltip();   
+      });
+    </script>
+    
 </head>
-<body class="bg-light">
-    <div class="container">
-        <div class="jumbotron">
-          <h1>Formulario de Ingreso</h1>      
-          <p>Servicio Psiquiatrico para Varones (H.P.C.I / ALA NORTE)</p>
+<body class="bg-light" style="overflow: auto;">
+
+<div class="ultrainer" style="min-height: 100%; min-height: 100vh; display: flex; align-items: center;">
+<div class="container">
+
+    <div class="header" style="margin-left: 22%;"> <!-- HEADER -->
+        <div class="row" style="margin-bottom: 50px;">
+
+            <div class="col col-lg-1" style="align-items: center; padding-right: 1px;">
+            <img src="src/logo-spf.png" class="rounded mx-auto d-block" style=" width: 36px;">
+            </div>
+
+
+            <div class="col" style="align-items: center; padding-left: 1px;">
+
+            <h6>Servicio Penitenciario Federal<br>
+            Complejo Penitenciario Federal I - Ezeiza<br>
+            Servicio Psiquiatrico para Varones (PRISMA)</h6>
+
+            </div>
+
         </div>
-        <form action="procesa2.php" method="POST">
+    </div>
 
-<!-- /// INICIO CAJA DATOS PERSONALES /// ---------------------------------------------------------------->
-          <div class="form-group">
-            <div class="row">
 
-               <div class="col">
-                <label for="app_ing">Apellido</label> <!--APELLIDO-->
-                <input type="text" name="app_ing" class="form-control" id="idIngApp" placeholder="Apellido del interno">
-              </div>
+    <div class="row justify-content-md-center">
+       
+        <div class="card col col-lg-3" style="align-items: center; padding-top: 20px; padding-bottom: 20px; margin-right: 10px">
+        <i class="far fa-address-card fa-7x" style="color:#6cb6fb;"></i><br>
+        <a href="index-2.php" class="btn btn-outline-primary">Ingresar Nuevo Interno</a>
+        </div>
+       
+        <div class="card col col-lg-3" style="align-items: center; padding-top: 20px; padding-bottom: 20px; margin-left:10px">
+        <i class="fas fa-search fa-7x" style="color:#6cb6fb;"></i><br>
+        <button type="button" class="btn btn-outline-primary">Realizar Busqueda</button>
+        </div>
 
-              <div class="col">
-                <label for="nom_ing">Nombre</label> <!--NOMBRE-->
-                <input type="text" name="nom_ing" class="form-control" id="idIngNom" placeholder="Nombre del interno">
-              </div>
+    </div>
+    
 
-               <div class="col col-lg-3">
-                <label for="fecha_ing">Fecha/Hora (de ingreso)</label><!--FECHA/HORA-->
-                <input type="datetime-local" name="fecha_ing" class="form-control" id="idIngFecha">
-              </div>
+</div>
+</div>
+<footer class="page-footer font-small blue" style="position: fixed; height: 100px; bottom: 0; width: 100%;">
 
-            </div>
-          </div>
+        <div class="footer-copyright text-center py-3">© 2018 Copyright:
+        Ayte. 3ra Juan G. MAGARINOS (Cred. 34.424)
+        </div>
 
-          <div class="form-group">
-            <div class="row justify-content-md-center">
-
-              <div class="col col-lg-1">
-                <label for="edad_ing">Edad</label><!--EDAD-->
-                <input type="text" name="edad_ing" class="form-control" id="idIngEdad" placeholder="Edad del interno">
-              </div>
-                
-              <div class="col col-lg-2">
-                <label for="sexo_ing">Sexo</label> <!--SEXO-->
-                <select name="sexo_ing" class="form-control" id="idIngSexo">
-                  <option>Masculino</option>
-                  <option>Femenino</option>
-                </select>
-              </div>
-
-              <div class="col">
-                <label for="fecha_nac_ing">Fecha de Nacimiento</label><!--FECHA DE NACIMIENTO-->
-                <input type="date" name="fecha_nac_ing" class="form-control" id="idIngFechaNac">
-              </div>
-
-              <div class="col col-lg-2">
-                <label for="cond_sex_ing">Condicion Sexual</label> <!--CONDICION SEXUAL-->
-                <select name="cond_sex_ing" class="form-control" id="idCondSex">
-                  <option>HETEROSEXUAL</option>
-                  <option>HOMOSEXUAL</option>
-                  <option>BISEXUAL</option>
-                </select>
-              </div>
-
-              <div class="col col-lg-2">
-                <label for="civil_ing">Estado Civil</label> <!--ESTADO CIVIL-->
-                <select name="civil_ing" class="form-control" id="idCivil">
-                  <option>SOLTERO</option>
-                  <option>CASADO</option>
-                  <option>DIVORCIADO</option>
-                  <option>VIUDO</option>
-                </select>
-              </div>
-
-              <div class="col col-lg-2">
-                <label for="naciona_ing">Pais de Origen</label> <!--NACIONALIDAD-->
-                <select name="naciona_ing" class="form-control" id="idNaciona">
-                  <option>ARGENTINA</option>
-                  <option>BRASIL</option>
-                  <option>PERU</option>
-                  <option>JAPON</option>
-                  <option>COLOMBIA</option>
-                  <option>VENEZUELA</option>
-                </select>
-              </div>
-
-            </div>
-           </div>
-
-<!-- /// FIN CAJA DATOS PERSONALES /// ---------------------------------------------------------------->
-<hr />
-<!-- /// INICIO CAJA JUDICIAL /// --------------------------------------------------------------------->
-
-          <div class="form-group">
-            <div class="row">
-
-              <div class="col">
-                <label for="lpu_ing">LPU</label> <!--LPU-->
-                <input type="text" maxlength="6" name="lpu_ing" class="form-control" id="idIngLpu" placeholder="LPU del interno" onkeypress="return valida(event)">
-                  
-                  <!-- FUNCION PARA USAR NUMEROS EN CAMPO TIPO TEXTO -->
-                  <script>
-                    function valida(e){
-                      tecla = (document.all) ? e.keyCode : e.which;
-
-                      //Tecla de retroceso para borrar, siempre la permite
-                      if (tecla==8){
-                          return true;
-                      }
-                          
-                      // Patron de entrada, en este caso solo acepta numeros
-                      patron =/[0-9]/;
-                      tecla_final = String.fromCharCode(tecla);
-                      return patron.test(tecla_final);
-                      }
-                  </script>
-                  <!-- FIN FUNCION -->
-              </div>
-
-              <div class="col col-lg-2">
-                <label for="org_ing">Origen</label> <!--ORIGEN-->
-                <select name="org_ing" class="form-control" id="idOrigen">
-                  <option>U28</option>
-                  <option>CPFII</option>
-                  <option>CPFIV</option>
-                  <option>CPFCABA</option>
-                  <option>OTRO</option>
-                </select>
-              </div>
-
-            </div>
-          </div>
-<!-- /// FIN CAJA JUDICIAL /// --------------------------------------------------------------------->
-          <button type="submit" class="btn btn-primary" id="btn-ingresar">Ingresar</button>
-        </form> 
-<hr />
-<!-- /// INICIO CAJA TABLA DE INTERNOS /// --------------------------------------------------------->
-        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-            <thead>
-                <tr>
-                    <th>Num</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>LPU</th>
-                    <th>Edad</th>
-                    <th>Sexo</th>
-                    <th>Procedencia</th>
-                </tr>
-            </thead>
-
-            <!-- INICIO BUSQUEDA -->
-            <?php
-            require 'server.php';
-
-            $sppv = "SELECT * FROM ingreso order by id_ingreso DESC";
-            $result = $conn->query($sppv) or die (mysqli_error($conn));
-            ?>
-            <!-- FIN BUSQUEDA -->
-
-            <tbody>
-            <?php
-              while ($row=$result->fetch_assoc()) 
-              {
-                echo "<tr>";
-                  echo "<td>"; echo $row['id_ingreso']; echo"</td>";
-                  echo "<td>"; echo $row['nom_ing'];  echo"</td>";
-                  echo "<td>"; echo $row['app_ing'];  echo"</td>";
-                  echo "<td>"; echo $row['lpu_ing'];  echo"</td>";
-                  echo "<td>"; echo $row['edad_ing'];  echo"</td>";
-                  echo "<td>"; echo $row['sexo_ing'];  echo"</td>";
-                  echo "<td>"; echo $row['org_ing'];  echo"</td>";
-                  echo "<td align='center'> <a href='modif_int.php?id_ingreso=".$row['id_ingreso']."'><i class='fas fa-edit'></i></a>
-                  <a href='#'><i class='fas fa-trash-alt'></i></a></td>";
-                echo "</tr>";
-              }
-            ?>
-
-            </tbody>
-        </table>
-<!-- /// INICIO CAJA TABLA DE INTERNOS /// --------------------------------------------------------->
-    </div>        
+</footer>
 </body>
 </html>
 
