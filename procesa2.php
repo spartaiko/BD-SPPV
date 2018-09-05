@@ -51,14 +51,10 @@ $origen = $_POST['org_ing'];
 $fingreso = $_POST['fecha_ing'];
 $edad = $_POST['edad_ing'];
 $tipoing = $_POST['tipo_ing'];
-
-
-
 $sexo_ing = $_POST['sexo_ing'];
 $naciona_ing = $_POST['naciona_ing'];
 $motivo_ing = $_POST['motivo_ing'];
 $fecha_nac_ing = $_POST['fecha_nac_ing'];
-
 $cond_sex_ing = $_POST['cond_sex_ing'];
 $civil_ing = $_POST['civil_ing'];
 $sit_ing = $_POST['sit_ing'];

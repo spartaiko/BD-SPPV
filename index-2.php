@@ -9,20 +9,24 @@
     <!-- FONTAWESOME -- ICONS -->
     <script defer src="fontawesome-free-5.3.1-web/js/all.js"></script>
 
+    <!-- STYLE -- BOOSTRAP -->
+    <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/> <!-- STYLE -->
+
+    <!-- JAVASCRIPT -- JQUERY -->    
+    <script type="text/javascript" src="DataTables/jQuery-3.3.1/jquery-3.3.1.js"></script> <!-- JQUERY -->
+    <script type="text/javascript" src="DataTables/DataTables-1.10.18/js/dataTables.bootstrap.min.js"></script> <!-- BOOSTRAP -->
+    <script type="text/javascript" src="DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script> <!-- JQUERY -->
+    <script type="text/javascript" src="DataTables/datatables.min.js"></script>
+
+    <!-- JAVASCRIPT -- JQUERY -->  
+    <script type="text/javascript" src="funciones.js"></script>
+
     <!-- TABLA DATABASE JQUERY -- INICIO -->
-      <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
-      <link rel="stylesheet" href="DataTables/DataTables-1.10.18/js/dataTables.bootstrap.min.css"> <!-- CSS -->
-      <link rel="stylesheet" href="DataTables/DataTables-1.10.18/js/jquery.dataTables.min.css"> <!-- JQUERY -->
 
-      <!-- SCRIPT - PARAS EL LISTADO DATABASE JQUERY -->
-            <script type="text/javascript" src="DataTables/jQuery-3.3.1/jquery-3.3.1.js"></script> <!-- JQUERY -->
-            <script type="text/javascript" src="DataTables/DataTables-1.10.18/js/dataTables.bootstrap.min.js"></script> <!-- JQUERY -->
-            <script type="text/javascript" src="DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script> <!-- JQUERY -->
-            <script type="text/javascript" src="DataTables/datatables.min.js"></script>
-
-            <script type="text/javascript">
+            <script type="text/javascript"> // <!-- SCRIPT - PARAS EL LISTADO DATABASE JQUERY -->
               $(document).ready(function() {
                 $(".table").DataTable({
+                  responsive: true,
                   "order": [], // --> Se desactiva el modo ordenar
                   "language": {
                       "lengthMenu": "Mostrar _MENU_ registros por página",
@@ -39,15 +43,8 @@
                 });
               });
             </script>
-      <!-- SCRIPT FIN - PARAS EL LISTADO DATABASE JQUERY -->
 
     <!-- TABLA DATABASE JQUERY -- FIN -->
-
-    <script> //<!-- TOOLTIP - TEXTO LEYENDA -->
-      $(document).ready(function(){
-          $('[data-toggle="tooltip"]').tooltip();   
-      });
-    </script>
     
 </head>
 <body class="bg-light">
@@ -218,7 +215,7 @@
 
             <div class="col">
               <label for="juz_ing">Juzgado/Tribunal</label> <!--JUZGADO-->
-              <input type="text" name="app_ing" class="form-control" id="idIngJuz" placeholder="Juzgado/Tribunal a cargo">
+              <input type="text" name="juz_ing" class="form-control" id="idIngJuz" placeholder="Juzgado/Tribunal a cargo">
             </div>
 
             <div class="col">
@@ -265,34 +262,138 @@
                 
                 $sppv = "SELECT * FROM ingreso order by id_ingreso DESC";
                 $result = $conn->query($sppv) or die (mysqli_error($conn));
-                
+
               ?>
             <!-- FIN BUSQUEDA -->
 
             <tbody>
             <?php // <!-- IMPRIME LOS RESULTADOS EN LA TABLA -->
-              while ($row=$result->fetch_assoc()) 
-              {
-                echo "<tr>";
-                  echo "<td>"; echo (date("d-m-Y H:i", strtotime($row['fecha_ing'])));  echo"</td>";
-                  echo "<td>"; echo $row['app_ing'];  echo"</td>";
-                  echo "<td>"; echo $row['nom_ing'];  echo"</td>";
-                  echo "<td>"; echo $row['lpu_ing'];  echo"</td>";
-                  echo "<td>"; echo $row['org_ing'];  echo"</td>";
-                  echo "<td>"; echo $row['edad_ing'];  echo"</td>";
-                  echo "<td style='display: flex;'>
-                  <a href='modif_int.php?id_ingreso=".$row['id_ingreso']."' data-toggle='tooltip' title='Editar!'><i class='fas fa-edit'></i></a>
-                  <a href='#' data-toggle='tooltip' title='Eliminar!'><i class='fas fa-trash-alt' style='color:#d9534f;'></i></a>
-                  </td>";
-                echo "</tr>";
-              }
+              while ($row=$result->fetch_assoc()){
+
+                $datos=$row['app_ing']."||".
+                $row['nom_ing']."||".
+                $row['lpu_ing']."||".
+                $row['org_ing']."||".
+                $row['civil_ing']."||".
+                $row['edad_ing'];
+
             ?>
 
+            <tr>
+              <td><?php echo (date("d-m-Y H:i", strtotime($row['fecha_ing']))) ?></td>
+              <td><?php echo $row['app_ing'] ?></td>
+              <td><?php echo $row['nom_ing'] ?></td>
+              <td><?php echo $row['lpu_ing'] ?></td>
+              <td><?php echo $row['org_ing'] ?></td>
+              <td><?php echo $row['edad_ing'] ?></td>
+              <td>
+
+                  <button type="button" class="btn btn-primary btn-sm" 
+                  data-toggle="modal" data-target="#modalEdicion"
+
+                  onclick="agregaform('<?php echo $datos ?>')"> 
+                  <i class="fas fa-edit"></i>
+                  </button>
+
+              </td>
+            </tr>
+            <?php
+              }
+            ?>
             </tbody>
         </table>
     </div>    
 <!-- /// FIN CAJA TABLA DE INTERNOS /// --------------------------------------------------------->
-    
+
+<!-- /// MODAL EDICION DE DATOS /// --------------------------------------------------------->
+  <!-- Button trigger modal -->
+
+  <!-- Modal -->
+  <div class="modal fade bd-example-modal-lg" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar -- Registro de Interno Ingresado</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+
+
+          
+        <div class="form-group"> <!-- APP / NOM / FECHA ING -->
+            <div class="row">
+
+                <div class="col">
+                    <label> APELLIDO </label>
+                    <input type='text' id='app_ing' name='app_ing' disabled><br>
+                </div>
+
+                <div class="col">
+                    <label> NOMBRE </label>
+                    <input type='text' id='nom_ing' name='nom_ing' disabled><br>
+                </div>
+
+                <div class="col">
+                    <label> LPU </label>
+                    <input type='text' id='lpu_ing' name='fecha_ing' disabled><br>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group"> <!-- EDAD / SEX / FECHA NAC. -->
+            <div class="row">
+
+                <div class="col">
+                    <label> EDAD </label>
+                    <input type='text' id='edad_ing' name='edad_ing'><br>
+                </div>
+
+                <div class="col">
+                    <label> SEXO </label>
+                    <input type='text' id='nom_ing' name='nom_ing'><br>
+                </div>
+
+                <div class="col">
+                    <label> FECHA DE NACIMIENTO </label>
+                    <input type='text' id='lpu_ing' name='lpu_ing'><br>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group"> <!-- CON.SEX / EST.CIVIL / ORIGEN -->
+            <div class="row">
+
+                <div class="col">
+                    <label> CONDICION SEXUAL </label>
+                    <input type='text' id='app_ing' name='app_ing'><br>
+                </div>
+
+                <div class="col">
+                    <label> EST. CIVIL </label>
+                    <input type='text' id='civil_ing' name='civil_ing'><br>
+                </div>
+
+                <div class="col">
+                    <label> ORIGEN </label>
+                    <input type='text' id='org_ing' name='org_ing'><br>
+                </div>
+            </div>
+        </div>
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="guardar_datos">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- /// FIN MODAL /// --------------------------------------------------------->
+
 <footer class="page-footer font-small blue" style="background-color:#F8F9FA; position: sticky; height: 100px; bottom: 0; width: 100%;">
 
   <div class="footer-copyright text-center py-3">© 2018 Copyright:
@@ -303,4 +404,3 @@
 
 </body>
 </html>
-
