@@ -1,4 +1,32 @@
+<link rel="stylesheet" type="text/css" href="node_modules/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css"/> <!-- dataTables .CSS -->
 
+<script type="text/javascript" src="node_modules/DataTables/jQuery-3.3.1/jquery-3.3.1.js"></script> <!-- dataTables .JS JQUERY -->
+<script type="text/javascript" src="node_modules/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script> <!-- dataTables .JS JQUERY -->
+
+<!-- TABLA DATABASE JQUERY -- INICIO -->
+
+		<script type="text/javascript"> // <!-- SCRIPT - PARAS EL LISTADO DATABASE JQUERY -->
+		$(document).ready(function() {
+			$(".table").DataTable({
+			responsive: true,
+			"order": [], // --> Se desactiva el modo ordenar
+			"language": {
+				"lengthMenu": "Mostrar _MENU_ registros por página",
+				"search": "Buscar",
+				"info":           "Mostrando <b>_START_</b> a <b>_END_</b> de <b>_TOTAL_</b> internos registrados",
+				"infoEmpty":      "Mostrando 0 a 0 de 0 entradas",
+				"paginate": {
+					"first":      "Primero",
+					"last":       "Ultimo",
+					"next":       "Siguiente",
+					"previous":   "Anterior"
+				},
+			}
+			});
+		});
+		</script>
+
+<!-- TABLA DATABASE JQUERY -- FIN -->
 <?php 
 	require_once "../php/conexion.php";
 	$conexion=conexion();
@@ -6,22 +34,26 @@
  ?>
 <div class="row">
 	<div class="col-sm-12">
-	<h2>Tabla dinamica facultad autodidacta</h2>
 		<table class="table table-hover table-condensed table-bordered">
-		<caption>
-			<button class="btn btn-primary" data-toggle="modal" data-target="#modalNuevo">
-				Agregar nuevo 
-				<span class="glyphicon glyphicon-plus"></span>
-			</button>
-		</caption>
-			<tr>
-				<td>Nombre</td>
-				<td>Apellido</td>
-				<td>LPU</td>
-				<td>Sexo</td>
-				<td>Editar</td>
-				<td>Eliminar</td>
-			</tr>
+			<thead>
+				<tr>
+					<td>Fecha(Ingreso)</td>
+					<td>Apellido</td>
+					<td>Nombre</td>
+					<td>LPU</td>
+					<td>Origen</td>
+					<td>Ing/Egr</td>
+					<td>...</td>
+					<!--
+					<td>Nombre</td>
+					<td>Apellido</td>
+					<td>LPU</td>
+					<td>Sexo</td>
+					<td>Editar</td>
+					<td>Eliminar</td>
+					-->
+				</tr>
+			</thead>
 
 			<?php 
 

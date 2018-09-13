@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head> <!-- HEAD -->
   <!-- INICIO - META NO CACHE -->
     <meta http-equiv="Cache-control" content="no-store">
     <meta http-equiv="cache-control" content="max-age=0" />
@@ -11,14 +11,46 @@
   <!-- FIN - META NO CACHE -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title>BD - SPPV</title>
-	<link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css"> <!-- bootstrap libreria .CSS -->
+	<link rel="stylesheet" type="text/css" href="node_modules/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css"> <!-- jQuery libreria .CSS -->
+	<link rel="stylesheet" type="text/css" href="node_modules/DataTables/Responsive-2.2.2/css/responsive.bootstrap.min.css"> <!-- jQuery libreria .CSS -->
 	<link rel="stylesheet" type="text/css" href="librerias/alertifyjs/css/alertify.css">
 	<link rel="stylesheet" type="text/css" href="librerias/alertifyjs/css/themes/default.css">
 
-	<script src="librerias/jquery-3.2.1.min.js"></script>
-  <script src="js/funciones.js"></script>
+	<script type="text/javascript" src="node_modules/DataTables/jQuery-3.3.1/jquery-3.3.1.js"></script> <!-- dataTables .JS JQUERY -->
 	<script src="librerias/bootstrap/js/bootstrap.js"></script>
+  <script type="text/javascript" src="node_modules/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script> <!-- dataTables .JS JQUERY -->
+  <script type="text/javascript" src="node_modules/DataTables/Responsive-2.2.2/js/responsive.bootstrap.min.js"></script> <!-- dataTables .JS JQUERY -->
+  <script src="js/funciones.js"></script> 
 	<script src="librerias/alertifyjs/alertify.js"></script>
+
+  <!-- FONTAWESOME -- ICONS -->
+  <script defer src="node_modules/fontawesome-free-5.3.1-web/js/all.js"></script>
+
+  <!-- TABLA DATABASE JQUERY -- INICIO -->
+
+          <script type="text/javascript"> // <!-- SCRIPT - PARAS EL LISTADO DATABASE JQUERY -->
+            $(document).ready(function() {
+              $(".table").DataTable({
+                responsive: true,
+                "order": [], // --> Se desactiva el modo ordenar
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "search": "Buscar",
+                    "info":           "Mostrando <b>_START_</b> a <b>_END_</b> de <b>_TOTAL_</b> internos registrados",
+                    "infoEmpty":      "Mostrando 0 a 0 de 0 entradas",
+                    "paginate": {
+                        "first":      "Primero",
+                        "last":       "Ultimo",
+                        "next":       "Siguiente",
+                        "previous":   "Anterior"
+                    },
+                }
+              });
+            });
+          </script>
+
+  <!-- TABLA DATABASE JQUERY -- FIN -->
   
 </head>
 <body>
@@ -28,6 +60,10 @@
       <h1>Registro de Ingreso</h1>      
       <p>Servicio Psiquiatrico para Varones (H.P.C.I / ALA NORTE)</p>
     </div>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#modalNuevo" style="margin-bottom: 15px;">
+				Nuevo Ingreso 
+				<span class="glyphicon glyphicon-plus"></span>
+			</button><br>
 		<div id="tabla"></div>
 	</div>
 
