@@ -27,6 +27,7 @@
 		</script>
 
 <!-- TABLA DATABASE JQUERY -- FIN -->
+
 <?php 
 	require_once "../php/conexion.php";
 	$conexion=conexion();
@@ -36,28 +37,20 @@
 	<div class="col-sm-12">
 		<table class="table table-hover table-condensed table-bordered">
 			<thead>
-				<tr>
+				<tr style="text-align: center;">
 					<td>Fecha(Ingreso)</td>
 					<td>Apellido</td>
 					<td>Nombre</td>
 					<td>LPU</td>
 					<td>Origen</td>
-					<td>Ing/Egr</td>
-					<td>...</td>
-					<!--
-					<td>Nombre</td>
-					<td>Apellido</td>
-					<td>LPU</td>
-					<td>Sexo</td>
-					<td>Editar</td>
-					<td>Eliminar</td>
-					-->
+					<td>Aloj/Egr</td>
+					<td></td>
 				</tr>
 			</thead>
 
 			<?php 
 
-				$sql="SELECT id_ingresos,nom_ing,app_ing,lpu_ing,sexo_ing from ingresos";
+				$sql="SELECT * from ingresos ORDER BY id_ingresos DESC";
 				$result=mysqli_query($conexion,$sql);
 				while($ver=mysqli_fetch_row($result)){ 
 
@@ -65,24 +58,42 @@
 						   $ver[1]."||".
 						   $ver[2]."||".
 						   $ver[3]."||".
-						   $ver[4];
+						   $ver[4]."||".
+						   $ver[5]."||".
+						   $ver[6]."||".
+						   $ver[7]."||".
+						   $ver[8]."||".
+						   $ver[9]."||".
+						   $ver[10]."||".
+						   $ver[11]."||".
+						   $ver[12]."||".
+						   $ver[13]."||".
+						   $ver[14]."||".
+						   $ver[15]."||".
+						   $ver[16]."||".
+						   $ver[17]."||".
+						   $ver[18];
+
+					$date = date_create($ver[6]);
 			 ?>
 
-			<tr>
-				<td><?php echo $ver[1] ?></td>
+			<tr style="text-align: center;">
+				<td><?php echo date_format($date, 'd/m/Y H:i') ?></td>
 				<td><?php echo $ver[2] ?></td>
+				<td><?php echo $ver[1] ?></td>
 				<td><?php echo $ver[3] ?></td>
-				<td><?php echo $ver[4] ?></td>
+				<td><?php echo $ver[5] ?></td>
+				<td><?php echo $ver[7] ?></td>
 				<td>
-					<button class="btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')">
-						
-					</button>
-				</td>
-				<td>
-					<button class="btn btn-danger glyphicon glyphicon-remove" 
+					<a class="btn" data-toggle="modal" 
+					data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>'); editarformTrue();">
+					<i class='fas fa-edit' style='color:#007bff;'></i>
+					</a>
+					
+					<a class="btn" 
 					onclick="preguntarSiNo('<?php echo $ver[0] ?>')">
-						
-					</button>
+					<i class='fas fa-trash-alt' style='color:#d9534f;'></i>
+					</a>
 				</td>
 			</tr>
 			<?php 
@@ -91,3 +102,32 @@
 		</table>
 	</div>
 </div>
+
+<!-- SCRIPT editarformTrue -->
+	<script type="text/javascript">
+	function editarformTrue(){
+
+			document.getElementById("apellidou").disabled = true;
+			document.getElementById("nombreu").disabled = true;
+			document.getElementById("fechaingresou").disabled = true;
+   			document.getElementById("egraloju").disabled = true;
+			document.getElementById("edadu").disabled = true;
+			document.getElementById("sexou").disabled = true;
+			document.getElementById("fechanacimientou").disabled = true;
+			document.getElementById("condsexualu").disabled = true;
+			document.getElementById("civilu").disabled = true;
+			document.getElementById("nacionalidadu").disabled = true;
+			document.getElementById("tipoingresou").disabled = true;
+			document.getElementById("lpuu").disabled = true;
+			document.getElementById("sitlegalu").disabled = true;
+			document.getElementById("origenu").disabled = true;
+			document.getElementById("motivou").disabled = true;
+			document.getElementById("juzgadou").disabled = true;
+			document.getElementById("delitou").disabled = true;
+			document.getElementById("articulou").disabled = true;
+			document.getElementById("editar_registro").disabled = false;
+
+
+		}
+	</script>
+<!-- SCRIPT editarformTrue -->
