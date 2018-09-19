@@ -19,12 +19,10 @@
 
 	<script type="text/javascript" src="node_modules/DataTables/jQuery-3.3.1/jquery-3.3.1.js"></script> <!-- dataTables .JS JQUERY -->
 	<script src="librerias/bootstrap/js/bootstrap.js"></script>
-  <script type="text/javascript" src="node_modules/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script> <!-- dataTables .JS JQUERY -->
-  <script type="text/javascript" src="node_modules/DataTables/Responsive-2.2.2/js/responsive.bootstrap.min.js"></script> <!-- dataTables .JS JQUERY -->
-  <script src="js/funciones.js"></script> 
+    <script type="text/javascript" src="node_modules/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script> <!-- dataTables .JS JQUERY -->
+    <script type="text/javascript" src="node_modules/DataTables/Responsive-2.2.2/js/responsive.bootstrap.min.js"></script> <!-- dataTables .JS JQUERY -->
+    <script src="js/funciones.js"></script> 
 	<script src="librerias/alertifyjs/alertify.js"></script>
-
-  
 
   <!-- FONTAWESOME -- ICONS -->
   <script defer src="node_modules/fontawesome-free-5.3.1-web/js/all.js"></script>
@@ -58,17 +56,23 @@
 <body>
 
 	<div class="container">
-    <div class="jumbotron">
-    <h5>Servicio Penitenciario Federal<br>
-            Complejo Penitenciario Federal I - Ezeiza<br>
-            Servicio Psiquiatrico para Varones (PRISMA)</h5>
-      <h1>Registro de Ingreso</h1>   
-    </div>
-    <button class="btn btn-primary" data-toggle="modal" data-target="#modalNuevo" style="margin-bottom: 15px;">
-				Nuevo Ingreso 
-				<span class="glyphicon glyphicon-plus"></span>
-			</button><br>
-		<div id="tabla"></div>
+        <nav class="navbar navbar-inverse" style="background-color: #FFFFFF;">
+            <div class="navbar-header">
+                <img src="src/logo-spf.png" class="img-thumbnail" style="width: 48px; margin-right: 10px;">
+            </div>
+            <h5 style="margin-bottom: 0px;">Servicio Psiquiatrico para Varones (PRISMA)</h5>
+            <h2 style="margin-top: 0px;">Registro de Ingreso</h2> 
+        </nav>
+
+        <div id="tabla-detalles"></div> <!-- TABLA DETALESS -->
+        <hr />
+
+        <button class="btn btn-success" data-toggle="modal" data-target="#modalNuevo" style="margin-bottom: 15px;">
+            Nuevo Ingreso 
+            <span class="glyphicon glyphicon-plus"></span>
+        </button><br>
+
+		<div id="tabla"></div> <!-- TABLA INTERNOS -->
 	</div>
 
 <!-- INICIO -- Modal para registros nuevos -->
@@ -245,7 +249,7 @@
                             <label>Origen</label> 
                             <select name="" class="form-control input-sm" id="origen">
                               <option></option>
-                              <option>U28</option>
+                              <option>U.28</option>
                               <option>CPFIV</option>
                               <option>CPFCABA</option>
                               <option>OTRO</option>
@@ -345,7 +349,7 @@
                     </select>
 
                     <label>Fecha/Hora (de ingreso)</label><!--FECHA/HORA-->
-                    <input type="datetime-local" name="" class="form-control input-sm" id="fechaingresou" disabled>
+                    <input type="text" name="" class="form-control input-sm" id="fechaingresou" disabled>
 
                   </div>
 
@@ -481,7 +485,7 @@
                           <label>Origen</label> 
                           <select name="" class="form-control input-sm" id="origenu" disabled>
                             <option></option>
-                            <option>U28</option>
+                            <option>U.28</option>
                             <option>CPFIV</option>
                             <option>CPFCABA</option>
                             <option>OTRO</option>
@@ -542,6 +546,30 @@
   </div>
 
 <!-- FIN -- Modal para edicion de datos -->
+
+<!-- INICIO -- Modal detalles -->
+    <div class="modal fade bd-example-modal-sm" id="modalDetalles" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document" style="max-width: 80% !important;">
+            <div class="modal-content">
+                <div class="modal-header"> <!-- MODAL HEADER -->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Detalles</h4>
+                </div>
+                    
+                <div class="modal-body">
+                <div id="tabla-alojados"></div> <!-- TABLA ALOJADOS -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#tabla-alojados').load('componentes/tabla-alojados.php');
+        });
+    </script>
+<!-- FIN -- Modal detalles -->
    
 
 </body>
@@ -551,30 +579,31 @@
   <script type="text/javascript">
     $(document).ready(function(){
       $('#tabla').load('componentes/tabla.php');
+      $('#tabla-detalles').load('componentes/tabla-detalles.php');
     });
   </script>
 
   <script type="text/javascript">
       $(document).ready(function(){
           $('#guardarnuevo').click(function(){
-            apellido=$('#apellido').val();
             nombre=$('#nombre').val();
-            egraloj=$('#egraloj').val();
-            fechaingreso=$('#fechaingreso').val();
-            edad=$('#edad').val();
+            apellido=$('#apellido').val();
+            lpu=$('#lpu').val();
             sexo=$('#sexo').val();
+            origen=$('#origen').val();
+            fechaingreso=$('#fechaingreso').val();
+            egraloj=$('#egraloj').val();
+            edad=$('#edad').val();
+            nacionalidad=$('#nacionalidad').val();
+            motivo=$('#motivo').val();
+            tipoingreso=$('#tipoingreso').val();
             fechanacimiento=$('#fechanacimiento').val();
             condsexual=$('#condsexual').val();
             civil=$('#civil').val();
-            nacionalidad=$('#nacionalidad').val();
-            tipoingreso=$('#tipoingreso').val();
-            lpu=$('#lpu').val();
             sitlegal=$('#sitlegal').val();
-            origen=$('#origen').val();
-            motivo=$('#motivo').val();
-            articulo=$('#articulo').val();
             juzgado=$('#juzgado').val();
             delito=$('#delito').val();
+            articulo=$('#articulo').val();
 
               agregardatos(nombre,apellido,lpu,sexo,origen,fechaingreso,egraloj,edad,nacionalidad,motivo,
               tipoingreso,fechanacimiento,condsexual,civil,sitlegal,juzgado,delito,articulo);

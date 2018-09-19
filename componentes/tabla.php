@@ -87,7 +87,7 @@
 				<td>
 					<a class="btn" data-toggle="modal" 
 					data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>'); editarformTrue();">
-					<i class='fas fa-edit' style='color:#007bff;'></i>
+					<i class='fas fa-eye' style='color:#007bff;'></i>
 					</a>
 					
 					<a class="btn" 

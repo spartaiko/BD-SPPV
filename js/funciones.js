@@ -1,7 +1,7 @@
 function agregardatos(nombre,apellido,lpu,sexo,origen,fechaingreso,egraloj,edad,nacionalidad,motivo,
 	tipoingreso,fechanacimiento,condsexual,civil,sitlegal,juzgado,delito,articulo){
 
-	cadena="nombre=" + nombre +
+	cadena="nombre=" + nombre + 
 			"&apellido=" + apellido +
 			"&lpu=" + lpu +
 			"&sexo=" + sexo +
@@ -19,13 +19,13 @@ function agregardatos(nombre,apellido,lpu,sexo,origen,fechaingreso,egraloj,edad,
 			"&juzgado=" + juzgado +
 			"&delito=" + delito +
 			"&articulo=" + articulo;
-			
 
 	$.ajax({
 		type:"POST",
 		url:"php/agregarDatos.php",
 		data:cadena,
 		success:function(r){
+			console.log(r)
 			if(r==1){
 				$('#tabla').load('componentes/tabla.php');
 				alertify.success("agregado con exito :)");
@@ -58,7 +58,7 @@ function agregaform(datos){
 	$('#civilu').val(d[14]);
 	$('#sitlegalu').val(d[15]);
 	$('#juzgadou').val(d[16]);
-	$('#delitou').val(d[17]);
+	$('#delitou').val(d[15]);
 	$('#articulou').val(d[18]);
 
 }
