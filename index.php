@@ -19,10 +19,12 @@
 
 	<script type="text/javascript" src="node_modules/DataTables/jQuery-3.3.1/jquery-3.3.1.js"></script> <!-- dataTables .JS JQUERY -->
 	<script src="librerias/bootstrap/js/bootstrap.js"></script>
-    <script type="text/javascript" src="node_modules/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script> <!-- dataTables .JS JQUERY -->
-    <script type="text/javascript" src="node_modules/DataTables/Responsive-2.2.2/js/responsive.bootstrap.min.js"></script> <!-- dataTables .JS JQUERY -->
-    <script src="js/funciones.js"></script> 
+  <script type="text/javascript" src="node_modules/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script> <!-- dataTables .JS JQUERY -->
+  <script type="text/javascript" src="node_modules/DataTables/Responsive-2.2.2/js/responsive.bootstrap.min.js"></script> <!-- dataTables .JS JQUERY -->
+  <script src="js/funciones.js"></script> 
 	<script src="librerias/alertifyjs/alertify.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="src/style.css">
 
   <!-- FONTAWESOME -- ICONS -->
   <script defer src="node_modules/fontawesome-free-5.3.1-web/js/all.js"></script>
@@ -44,10 +46,9 @@
                         "last":       "Ultimo",
                         "next":       "Siguiente",
                         "previous":   "Anterior"
-                    },
+                    }
                 }
-              });
-            });
+            })});
           </script>
 
   <!-- TABLA DATABASE JQUERY -- FIN -->
@@ -64,8 +65,6 @@
             <h2 style="margin-top: 0px;">Registro de Ingreso</h2> 
         </nav>
 
-        <div id="tabla-detalles"></div> <!-- TABLA DETALESS -->
-        <hr />
 
         <button class="btn btn-success" data-toggle="modal" data-target="#modalNuevo" style="margin-bottom: 15px;">
             Nuevo Ingreso 
@@ -599,14 +598,9 @@
             tipoingreso=$('#tipoingreso').val();
             fechanacimiento=$('#fechanacimiento').val();
             condsexual=$('#condsexual').val();
-            civil=$('#civil').val();
-            sitlegal=$('#sitlegal').val();
-            juzgado=$('#juzgado').val();
-            delito=$('#delito').val();
-            articulo=$('#articulo').val();
 
               agregardatos(nombre,apellido,lpu,sexo,origen,fechaingreso,egraloj,edad,nacionalidad,motivo,
-              tipoingreso,fechanacimiento,condsexual,civil,sitlegal,juzgado,delito,articulo);
+              tipoingreso,fechanacimiento,condsexual);
           });
 
           $('#actualizadatos').click(function(){
@@ -640,11 +634,3 @@
 
   }
   </script>
-<!-- SCRIPT REFRESCAR/GUARDAR/ACTUALIZAR -->
-
-
-<!-- LISTADO ATRIBUTOS
-
-
-
--->

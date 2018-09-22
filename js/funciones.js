@@ -1,5 +1,5 @@
 function agregardatos(nombre,apellido,lpu,sexo,origen,fechaingreso,egraloj,edad,nacionalidad,motivo,
-	tipoingreso,fechanacimiento,condsexual,civil,sitlegal,juzgado,delito,articulo){
+	tipoingreso,fechanacimiento,condsexual){
 
 	cadena="nombre=" + nombre + 
 			"&apellido=" + apellido +
@@ -13,12 +13,7 @@ function agregardatos(nombre,apellido,lpu,sexo,origen,fechaingreso,egraloj,edad,
 			"&motivo=" + motivo +
 			"&tipoingreso=" + tipoingreso +
 			"&fechanacimiento=" + fechanacimiento +
-			"&condsexual=" + condsexual +
-			"&civil=" + civil +
-			"&sitlegal=" + sitlegal +
-			"&juzgado=" + juzgado +
-			"&delito=" + delito +
-			"&articulo=" + articulo;
+			"&condsexual=" + condsexual;
 
 	$.ajax({
 		type:"POST",
@@ -34,7 +29,6 @@ function agregardatos(nombre,apellido,lpu,sexo,origen,fechaingreso,egraloj,edad,
 			}
 		}
 	});
-
 }
 
 function agregaform(datos){
@@ -55,11 +49,6 @@ function agregaform(datos){
 	$('#tipoingresou').val(d[11]);
 	$('#fechanacimientou').val(d[12]);
 	$('#condsexualu').val(d[13]);
-	$('#civilu').val(d[14]);
-	$('#sitlegalu').val(d[15]);
-	$('#juzgadou').val(d[16]);
-	$('#delitou').val(d[15]);
-	$('#articulou').val(d[18]);
 
 }
 
@@ -79,11 +68,6 @@ function actualizaDatos(){
 	tipoingreso=$('#tipoingresou').val();
 	fechanacimiento=$('#fechanacimientou').val();
 	condsexual=$('#condsexualu').val();
-	civil=$('#civilu').val();
-	sitlegal=$('#sitlegalu').val();
-	juzgado=$('#juzgadou').val();
-	delito=$('#delitou').val();
-	articulo=$('#articulou').val();
 
 	cadena= "id=" + id +
 			"&nombre=" + nombre + 
@@ -98,12 +82,7 @@ function actualizaDatos(){
 			"&motivo=" + motivo +
 			"&tipoingreso=" + tipoingreso +
 			"&fechanacimiento=" + fechanacimiento +
-			"&condsexual=" + condsexual +
-			"&civil=" + civil +
-			"&sitlegal=" + sitlegal +
-			"&juzgado=" + juzgado +
-			"&delito=" + delito +
-			"&articulo=" + articulo;
+			"&condsexual=" + condsexual;
 
 	$.ajax({
 		type:"POST",

@@ -5,7 +5,7 @@
 			$servidor="localhost";
 			$usuario="root";
 			$password="";
-			$bd="CPFISPPV";
+			$bd="SPPV";
 
 			$conexion=mysqli_connect($servidor,$usuario,$password,$bd);
 

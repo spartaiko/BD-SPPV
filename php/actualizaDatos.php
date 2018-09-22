@@ -15,11 +15,6 @@
 	$k=$_POST['tipoingreso'];
 	$l=$_POST['fechanacimiento'];
 	$m=$_POST['condsexual'];
-	$n=$_POST['civil'];
-	$o=$_POST['sitlegal'];
-	$p=$_POST['juzgado'];
-	$q=$_POST['delito'];
-	$r=$_POST['articulo'];
 
 	$sql="UPDATE ingresos set nom_ing='$a',
 								app_ing='$b',
@@ -33,12 +28,7 @@
 								motivo_ing='$j',
 								tipo_ing='$k',
 								fecha_nac_ing='$l',
-								cond_sex_ing='$m',
-								civil_ing='$n',
-								sit_ing='$o',
-								juz_ing='$p',
-								delito_ng='$q',
-								art_ing='$r'
+								cond_sex_ing='$m'
 				where id_ingresos='$id'";
 	echo $result=mysqli_query($conexion,$sql);
 

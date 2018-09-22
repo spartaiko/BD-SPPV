@@ -21,6 +21,15 @@
 					"next":       "Siguiente",
 					"previous":   "Anterior"
 				},
+
+				'rowCallback': function(row, data, index){
+                  if(data[3]> 11.7){
+                      $(row).find('td:eq(3)').css('color', 'red');
+                  }
+                  if(data[7].toUpperCase() == 'EGRESADO'){
+                      $(row).find('td:eq(7)').css('color', 'blue');
+                  }
+                },
 			}
 			});
 		});
@@ -67,14 +76,10 @@
 						   $ver[10]."||".
 						   $ver[11]."||".
 						   $ver[12]."||".
-						   $ver[13]."||".
-						   $ver[14]."||".
-						   $ver[15]."||".
-						   $ver[16]."||".
-						   $ver[17]."||".
-						   $ver[18];
+						   $ver[13];
 
-					$date = date_create($ver[6]);
+						   $date = date_create($ver[6]);
+
 			 ?>
 
 			<tr style="text-align: center;">
