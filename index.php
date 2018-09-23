@@ -28,30 +28,6 @@
 
   <!-- FONTAWESOME -- ICONS -->
   <script defer src="node_modules/fontawesome-free-5.3.1-web/js/all.js"></script>
-
-  <!-- TABLA DATABASE JQUERY -- INICIO -->
-
-          <script type="text/javascript"> // <!-- SCRIPT - PARAS EL LISTADO DATABASE JQUERY -->
-            $(document).ready(function() {
-              $(".table").DataTable({
-                responsive: true,
-                "order": [], // --> Se desactiva el modo ordenar
-                "language": {
-                    "lengthMenu": "Mostrar _MENU_ registros por página",
-                    "search": "Buscar",
-                    "info":           "Mostrando <b>_START_</b> a <b>_END_</b> de <b>_TOTAL_</b> internos registrados",
-                    "infoEmpty":      "Mostrando 0 a 0 de 0 entradas",
-                    "paginate": {
-                        "first":      "Primero",
-                        "last":       "Ultimo",
-                        "next":       "Siguiente",
-                        "previous":   "Anterior"
-                    }
-                }
-            })});
-          </script>
-
-  <!-- TABLA DATABASE JQUERY -- FIN -->
   
 </head>
 <body>
@@ -65,6 +41,8 @@
             <h2 style="margin-top: 0px;">Registro de Ingreso</h2> 
         </nav>
 
+        <div id="tabla-detalles"></div> <!-- TABLA DETALESS -->
+        <hr />
 
         <button class="btn btn-success" data-toggle="modal" data-target="#modalNuevo" style="margin-bottom: 15px;">
             Nuevo Ingreso 
@@ -546,32 +524,138 @@
 
 <!-- FIN -- Modal para edicion de datos -->
 
-<!-- INICIO -- Modal detalles -->
-    <div class="modal fade bd-example-modal-sm" id="modalDetalles" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-sm" role="document" style="max-width: 80% !important;">
+<!-- MODALS DETALLES -->
+
+  <!-- INICIO -- Modal ALOJADOS -->
+      <div class="modal fade" id="modalDetalles" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 80% !important;">
+              <div class="modal-content">
+                  <div class="modal-header"> <!-- MODAL HEADER -->
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Alojados</h4>
+                  </div>
+                      
+                  <div class="modal-body">
+                  <div id="tabla-alojados"></div> <!-- TABLA ALOJADOS -->
+                  </div>
+
+              </div>
+          </div>
+      </div>
+      <script type="text/javascript">
+      $(document).ready(function(){
+        $('#tabla-alojados').load('componentes/tabla-alojados.php');
+      });
+    </script>
+  <!-- FIN -- Modal ALOJADOS -->
+
+  <!-- INICIO -- Modal ARTICULO34 -->
+    <div class="modal fade" id="modalArticulo34" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 80% !important;">
+              <div class="modal-content">
+                  <div class="modal-header"> <!-- MODAL HEADER -->
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Art.34</h4>
+                  </div>
+                      
+                  <div class="modal-body">
+                  <div id="tabla-articulo34"></div> <!-- TABLA ART.34 -->
+                  </div>
+
+              </div>
+          </div>
+      </div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#tabla-articulo34').load('componentes/tabla-articulo34.php');
+      });
+    </script>
+  <!-- FIN -- Modal ARTICULO34 -->
+
+  <!-- INICIO -- Modal ARTICULO18 -->
+    <div class="modal fade" id="modalArticulo18" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 80% !important;">
             <div class="modal-content">
                 <div class="modal-header"> <!-- MODAL HEADER -->
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Detalles</h4>
+                    <h4 class="modal-title" id="myModalLabel">Art.18</h4>
                 </div>
                     
                 <div class="modal-body">
-                <div id="tabla-alojados"></div> <!-- TABLA ALOJADOS -->
+                <div id="tabla-articulo18"></div> <!-- TABLA ART.34 -->
                 </div>
 
             </div>
         </div>
     </div>
-
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('#tabla-alojados').load('componentes/tabla-alojados.php');
-        });
+      $(document).ready(function(){
+        $('#tabla-articulo18').load('componentes/tabla-articulo18.php');
+      });
     </script>
-<!-- FIN -- Modal detalles -->
+  <!-- FIN -- Modal ARTICULO18-->
+
+  <!-- INICIO -- Modal PROCESADOS -->
+    <div class="modal fade" id="modalPro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 80% !important;">
+            <div class="modal-content">
+                <div class="modal-header"> <!-- MODAL HEADER -->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Procesados</h4>
+                </div>
+                    
+                <div class="modal-body">
+                <div id="tabla-procesado"></div> <!-- TABLA ART.34 -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#tabla-procesado').load('componentes/tabla-procesado.php');
+      });
+    </script>
+  <!-- FIN -- Modal PROCESADOS--> 
+
+  <!-- INICIO -- Modal CONDENADOS -->
+    <div class="modal fade" id="modalCon" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 80% !important;">
+            <div class="modal-content">
+                <div class="modal-header"> <!-- MODAL HEADER -->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Condenados</h4>
+                </div>
+                    
+                <div class="modal-body">
+                <div id="tabla-condenado"></div> <!-- TABLA ART.34 -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#tabla-condenado').load('componentes/tabla-condenado.php');
+      });
+    </script>
+  <!-- FIN -- Modal CONDENADOS--> 
+
+<!-- MODALS DETALLES -->
    
 
 </body>
+<!-- Footer -->
+  <footer class="page-footer font-small blue">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2018 by #
+      <a href="#">Ayte. 3ra Juan G. MAGARINOS (C.34424)</a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+<!-- Footer -->
 </html>
 
 <!-- SCRIPT REFRESCAR/GUARDAR/ACTUALIZAR -->
@@ -598,9 +682,14 @@
             tipoingreso=$('#tipoingreso').val();
             fechanacimiento=$('#fechanacimiento').val();
             condsexual=$('#condsexual').val();
+            civil=$('#civil').val();
+            sitlegal=$('#sitlegal').val();
+            juzgado=$('#juzgado').val();
+            delito=$('#delito').val();
+            articulo=$('#articulo').val();
 
               agregardatos(nombre,apellido,lpu,sexo,origen,fechaingreso,egraloj,edad,nacionalidad,motivo,
-              tipoingreso,fechanacimiento,condsexual);
+              tipoingreso,fechanacimiento,condsexual,civil,sitlegal,juzgado,delito,articulo);
           });
 
           $('#actualizadatos').click(function(){
@@ -609,28 +698,29 @@
 
       });
 
-  function editarform(){
+    function editarform(){
 
-    document.getElementById("apellidou").disabled = false;
-    document.getElementById("nombreu").disabled = false;
-    document.getElementById("fechaingresou").disabled = false;
-    document.getElementById("egraloju").disabled = false;
-    document.getElementById("edadu").disabled = false;
-    document.getElementById("sexou").disabled = false;
-    document.getElementById("fechanacimientou").disabled = false;
-    document.getElementById("condsexualu").disabled = false;
-    document.getElementById("civilu").disabled = false;
-    document.getElementById("nacionalidadu").disabled = false;
-    document.getElementById("tipoingresou").disabled = false;
-    document.getElementById("lpuu").disabled = false;
-    document.getElementById("sitlegalu").disabled = false;
-    document.getElementById("origenu").disabled = false;
-    document.getElementById("motivou").disabled = false;
-    document.getElementById("juzgadou").disabled = false;
-    document.getElementById("delitou").disabled = false;
-    document.getElementById("articulou").disabled = false;
-    document.getElementById("editar_registro").disabled = true;
+      document.getElementById("apellidou").disabled = false;
+      document.getElementById("nombreu").disabled = false;
+      document.getElementById("fechaingresou").disabled = false;
+      document.getElementById("egraloju").disabled = false;
+      document.getElementById("edadu").disabled = false;
+      document.getElementById("sexou").disabled = false;
+      document.getElementById("fechanacimientou").disabled = false;
+      document.getElementById("condsexualu").disabled = false;
+      document.getElementById("civilu").disabled = false;
+      document.getElementById("nacionalidadu").disabled = false;
+      document.getElementById("tipoingresou").disabled = false;
+      document.getElementById("lpuu").disabled = false;
+      document.getElementById("sitlegalu").disabled = false;
+      document.getElementById("origenu").disabled = false;
+      document.getElementById("motivou").disabled = false;
+      document.getElementById("juzgadou").disabled = false;
+      document.getElementById("delitou").disabled = false;
+      document.getElementById("articulou").disabled = false;
+      document.getElementById("editar_registro").disabled = true;
 
 
-  }
+      }
   </script>
+<!-- SCRIPT REFRESCAR/GUARDAR/ACTUALIZAR -->

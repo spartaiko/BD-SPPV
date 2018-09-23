@@ -1,5 +1,5 @@
 function agregardatos(nombre,apellido,lpu,sexo,origen,fechaingreso,egraloj,edad,nacionalidad,motivo,
-	tipoingreso,fechanacimiento,condsexual){
+	tipoingreso,fechanacimiento,condsexual,civil,sitlegal,juzgado,delito,articulo){
 
 	cadena="nombre=" + nombre + 
 			"&apellido=" + apellido +
@@ -13,7 +13,12 @@ function agregardatos(nombre,apellido,lpu,sexo,origen,fechaingreso,egraloj,edad,
 			"&motivo=" + motivo +
 			"&tipoingreso=" + tipoingreso +
 			"&fechanacimiento=" + fechanacimiento +
-			"&condsexual=" + condsexual;
+			"&condsexual=" + condsexual +
+			"&civil=" + civil +
+			"&sitlegal=" + sitlegal +
+			"&juzgado=" + juzgado +
+			"&delito=" + delito +
+			"&articulo=" + articulo;
 
 	$.ajax({
 		type:"POST",
@@ -23,6 +28,7 @@ function agregardatos(nombre,apellido,lpu,sexo,origen,fechaingreso,egraloj,edad,
 			console.log(r)
 			if(r==1){
 				$('#tabla').load('componentes/tabla.php');
+				$('#tabla-detalles').load('componentes/tabla-detalles.php');
 				alertify.success("agregado con exito :)");
 			}else{
 				alertify.error("Fallo el servidor :(");
@@ -32,6 +38,8 @@ function agregardatos(nombre,apellido,lpu,sexo,origen,fechaingreso,egraloj,edad,
 }
 
 function agregaform(datos){
+
+	var include = "abc.php";
 
 	d=datos.split('||');
 
@@ -49,6 +57,11 @@ function agregaform(datos){
 	$('#tipoingresou').val(d[11]);
 	$('#fechanacimientou').val(d[12]);
 	$('#condsexualu').val(d[13]);
+	$('#civilu').val(d[14]);
+	$('#sitlegalu').val(d[15]);
+	$('#juzgadou').val(d[16]);
+	$('#delitou').val(d[15]);
+	$('#articulou').val(d[18]);
 
 }
 
@@ -68,6 +81,11 @@ function actualizaDatos(){
 	tipoingreso=$('#tipoingresou').val();
 	fechanacimiento=$('#fechanacimientou').val();
 	condsexual=$('#condsexualu').val();
+	civil=$('#civilu').val();
+	sitlegal=$('#sitlegalu').val();
+	juzgado=$('#juzgadou').val();
+	delito=$('#delitou').val();
+	articulo=$('#articulou').val();
 
 	cadena= "id=" + id +
 			"&nombre=" + nombre + 
@@ -82,7 +100,12 @@ function actualizaDatos(){
 			"&motivo=" + motivo +
 			"&tipoingreso=" + tipoingreso +
 			"&fechanacimiento=" + fechanacimiento +
-			"&condsexual=" + condsexual;
+			"&condsexual=" + condsexual +
+			"&civil=" + civil +
+			"&sitlegal=" + sitlegal +
+			"&juzgado=" + juzgado +
+			"&delito=" + delito +
+			"&articulo=" + articulo;
 
 	$.ajax({
 		type:"POST",
@@ -91,6 +114,7 @@ function actualizaDatos(){
 		success:function(r){
 			if(r==1){
 				$('#tabla').load('componentes/tabla.php');
+				$('#tabla-detalles').load('componentes/tabla-detalles.php');
 				alertify.success("Actualizado con exito :)");
 			}else{
 				alertify.error("Fallo el servidor :(");
@@ -117,6 +141,7 @@ function eliminarDatos(id){
 			success:function(r){
 				if(r==1){
 					$('#tabla').load('componentes/tabla.php');
+					$('#tabla-detalles').load('componentes/tabla-detalles.php');
 					alertify.success("Eliminado con exito!");
 				}else{
 					alertify.error("Fallo el servidor :(");

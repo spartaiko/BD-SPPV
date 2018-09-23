@@ -1,5 +1,3 @@
-<link rel="stylesheet" type="text/css" href="node_modules/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css"/> <!-- dataTables .CSS -->
-
 <script type="text/javascript" src="node_modules/DataTables/jQuery-3.3.1/jquery-3.3.1.js"></script> <!-- dataTables .JS JQUERY -->
 <script type="text/javascript" src="node_modules/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script> <!-- dataTables .JS JQUERY -->
 
@@ -20,17 +18,22 @@
 					"last":       "Ultimo",
 					"next":       "Siguiente",
 					"previous":   "Anterior"
-				},
-
-				'rowCallback': function(row, data, index){
-                  if(data[3]> 11.7){
-                      $(row).find('td:eq(3)').css('color', 'red');
-                  }
-                  if(data[7].toUpperCase() == 'EGRESADO'){
-                      $(row).find('td:eq(7)').css('color', 'blue');
-                  }
-                },
-			}
+				}
+			},	
+			"rowCallback": function(row, data, index){
+				if(data[5].toUpperCase() == 'EGRESADO'){
+					$(row).find('td:eq(0)').css('background-color', '#EF7674'),
+					$(row).find('td:eq(1)').css('background-color', '#EF7674'),
+					$(row).find('td:eq(2)').css('background-color', '#EF7674'),
+					$(row).find('td:eq(3)').css('background-color', '#EF7674'),
+					$(row).find('td:eq(4)').css('background-color', '#EF7674'),
+					$(row).find('td:eq(5)').css('background-color', '#EF7674');
+				}
+			},
+			"columnDefs": [
+				{ className: "herr", "targets": [ 6 ] }
+			]
+			
 			});
 		});
 		</script>
@@ -47,13 +50,13 @@
 		<table class="table table-hover table-condensed table-bordered">
 			<thead>
 				<tr style="text-align: center;">
-					<td>Fecha(Ingreso)</td>
-					<td>Apellido</td>
-					<td>Nombre</td>
-					<td>LPU</td>
-					<td>Origen</td>
-					<td>Aloj/Egr</td>
-					<td></td>
+					<td style="font-weight: bold; font-size: large;">Fecha(Ingreso)</td>
+					<td style="font-weight: bold; font-size: large;">Apellido</td>
+					<td style="font-weight: bold; font-size: large;">Nombre</td>
+					<td style="font-weight: bold; font-size: large;">LPU</td>
+					<td style="font-weight: bold; font-size: large;">Origen</td>
+					<td style="font-weight: bold; font-size: large;">Aloj/Egr</td>
+					<td style="font-weight: bold; font-size: large;"></td>
 				</tr>
 			</thead>
 
@@ -76,7 +79,12 @@
 						   $ver[10]."||".
 						   $ver[11]."||".
 						   $ver[12]."||".
-						   $ver[13];
+						   $ver[13]."||".
+						   $ver[14]."||".
+						   $ver[15]."||".
+						   $ver[16]."||".
+						   $ver[17]."||".
+						   $ver[18];
 
 						   $date = date_create($ver[6]);
 
@@ -95,10 +103,16 @@
 					<i class='fas fa-eye' style='color:#007bff;'></i>
 					</a>
 					
+					<a class="btn" data-toggle="modal" 
+					data-target="#modalLesion" onclick="#">
+					<i class='fas fa-file-medical' style='color:#F99922;'></i>
+					</a>
+					
 					<a class="btn" 
 					onclick="preguntarSiNo('<?php echo $ver[0] ?>')">
 					<i class='fas fa-trash-alt' style='color:#d9534f;'></i>
 					</a>
+					
 				</td>
 			</tr>
 			<?php 

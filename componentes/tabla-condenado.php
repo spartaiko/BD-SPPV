@@ -5,7 +5,7 @@
 
 		<script type="text/javascript"> // <!-- SCRIPT - PARAS EL LISTADO DATABASE JQUERY -->
 		$(document).ready(function() {
-			$(".tablerr").DataTable({
+			$(".tablacon").DataTable({
 			responsive: true,
 			"order": [], // --> Se desactiva el modo ordenar
 			"language": {
@@ -31,20 +31,19 @@
 	$conexion=conexion();
 ?>
 
-<table class="tablerr table-striped">
+<table class="tablacon table-striped">
     <thead>
         <tr>
-            <th scope="col">Fecha(Ingreso)</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">LPU</th>
-            <th></th>
+			<th scope="col">Apellido</th>
+			<th scope="col">Nombre</th>
+			<th scope="col">LPU</th>
+        	<th></th>
         </tr>
     </thead>
     
     <tbody>
     <?php 
-        $sql="SELECT * from ingresos WHERE egr_ing='ALOJADO' 
+        $sql="SELECT * from ingresos WHERE egr_ing='ALOJADO' AND sit_ing='CONDENADO' 
         ORDER BY id_ingresos DESC";
         $result=mysqli_query($conexion,$sql);
         while($ver=mysqli_fetch_row($result)){ 
@@ -69,12 +68,9 @@
 						   $ver[17]."||".
 						   $ver[18];
 
-						   $date = date_create($ver[6]);
-
     ?>
 
         <tr style="text-align: center;">
-            <td><?php echo date_format($date, 'd/m/Y H:i') ?></td>
             <td><?php echo $ver[2] ?></td>
             <td><?php echo $ver[1] ?></td>
             <td><?php echo $ver[3] ?></td>

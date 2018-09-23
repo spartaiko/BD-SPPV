@@ -12,11 +12,35 @@
 
         $alojados = $count[0];
 
-        $sql = "SELECT COUNT(id_ingresos) FROM ingresos WHERE egr_ing='EGRESADO'";
+        // ARTICULOS
+        $sql = "SELECT COUNT(id_ingresos) FROM ingresos WHERE egr_ing='ALOJADO' AND art_ing='ART.34'";
         $result = mysqli_query($conexion,$sql);
         $count = mysqli_fetch_array($result);
 
-        $egresado = $count[0];
+        $articulo34 = $count[0];
+
+        $sql = "SELECT COUNT(id_ingresos) FROM ingresos WHERE egr_ing='ALOJADO' AND art_ing='ART.18'";
+        $result = mysqli_query($conexion,$sql);
+        $count = mysqli_fetch_array($result);
+
+        $articulo18 = $count[0];
+        // ARTICULOS
+
+        // PROC/CON
+        $sql = "SELECT COUNT(id_ingresos) FROM ingresos WHERE egr_ing='ALOJADO' AND sit_ing='PROCESADO'";
+        $result = mysqli_query($conexion,$sql);
+        $count = mysqli_fetch_array($result);
+ 
+        $procesado = $count[0];
+ 
+        $sql = "SELECT COUNT(id_ingresos) FROM ingresos WHERE egr_ing='ALOJADO' AND sit_ing='CONDENADO'";
+        $result = mysqli_query($conexion,$sql);
+        $count = mysqli_fetch_array($result);
+ 
+        $condenado = $count[0];
+        // PROC/CON
+
+
 
 
     
@@ -24,68 +48,58 @@
 
 <div class="containter">
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDetalles">
-        Alojados <span class="badge badge-light"><?php echo $alojados ?></span>
-        </button>
 
-        <button type="button" class="btn btn-primary btn-sm" style="background-color:#6993CE; border: none;">
-        Egresados <span class="badge badge-light"><?php echo $egresado ?></span>
-        </button>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
 
-        <button type="button" class="btn btn-primary btn-sm" style="background-color:#6993CE; border: none;">
-        RIF <span class="badge badge-light"><?php echo $egresado ?></span>
-        </button>
+                        <li><a data-toggle="modal" data-target="#modalDetalles" onclick="load();"> <!-- ALOJADOS -->
+                                Alojados <span class="badge badge-light"><?php echo $alojados ?></span>
+                        </a></li>
 
-        <button type="button" class="btn btn-primary btn-sm" style="background-color:#6993CE; border: none;">
-        ART.34 <span class="badge badge-light"><?php echo $egresado ?></span>
-        </button>
+                        <li class="dropdown"> <!-- ARTICULOS -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" 
+                                aria-expanded="false">Articulos<span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" data-toggle="modal" data-target="#modalArticulo34"
+                                                onclick="load();">
+                                                ART.34 <span class="badge badge-light"><?php echo $articulo34 ?></span>
+                                                </a></li>
 
-        <button type="button" class="btn btn-primary btn-sm" style="background-color:#6993CE; border: none;">
-        PROCESADOS <span class="badge badge-light"><?php echo $egresado ?></span>
-        </button>
+                                                <li><a class="dropdown-item" data-toggle="modal" data-target="#modalArticulo18"
+                                                onclick="load();">
+                                                ART.18 <span class="badge badge-light"><?php echo $articulo18 ?></span>
+                                                </a></li>
+                                        </ul>
+                        </li>
 
-        <button type="button" class="btn btn-primary btn-sm" style="background-color:#6993CE; border: none;">
-        CONDENADOS <span class="badge badge-light"><?php echo $egresado ?></span>
-        </button>
+                        <li class="dropdown"> <!-- PROC/CON -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" 
+                                aria-expanded="false">Procesados/Condenados<span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" data-toggle="modal" data-target="#modalPro"
+                                                onclick="load();">
+                                                PROCESADOS <span class="badge badge-light"><?php echo $procesado ?></span>
+                                                </a></li>
 
-        <button type="button" class="btn btn-primary btn-sm" style="background-color:#6993CE; border: none;">
-        H.H. <span class="badge badge-light"><?php echo $egresado ?></span>
-        </button>
+                                                <li><a class="dropdown-item" data-toggle="modal" data-target="#modalCon"
+                                                onclick="load();">
+                                                CONDENADOS <span class="badge badge-light"><?php echo $condenado ?></span>
+                                                </a></li>
+                                        </ul>
+                        </li>
 
-        <button type="button" class="btn btn-primary btn-sm" style="background-color:#6993CE; border: none;">
-        J.A. <span class="badge badge-light"><?php echo $egresado ?></span>
-        </button>
+
+                </ul>
+        </div>
 
 </div>
 
-
-<!--
-echo $count[0];
-
-$sql="SELECT * from ingresos ORDER BY id_ingresos DESC";
-				$result=mysqli_query($conexion,$sql);
-				while($ver=mysqli_fetch_row($result)){ 
-
-					$datos=$ver[0]."||".
-						   $ver[1]."||".
-						   $ver[2]."||".
-						   $ver[3]."||".
-						   $ver[4]."||".
-						   $ver[5]."||".
-						   $ver[6]."||".
-						   $ver[7]."||".
-						   $ver[8]."||".
-						   $ver[9]."||".
-						   $ver[10]."||".
-						   $ver[11]."||".
-						   $ver[12]."||".
-						   $ver[13]."||".
-						   $ver[14]."||".
-						   $ver[15]."||".
-						   $ver[16]."||".
-						   $ver[17]."||".
-						   $ver[18];
-
-					$date = date_create($ver[6]);
-			 ?>
--->
+<script type="text/javascript">
+        function load(){
+                $('#tabla-alojados').load('componentes/tabla-alojados.php');
+                $('#tabla-articulo34').load('componentes/tabla-articulo34.php');
+                $('#tabla-articulo18').load('componentes/tabla-articulo18.php');
+                $('#tabla-condenado').load('componentes/tabla-condenado.php');
+                $('#tabla-procesado').load('componentes/tabla-procesado.php');
+        }
+</script>
