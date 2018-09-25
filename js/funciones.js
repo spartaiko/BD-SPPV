@@ -1,5 +1,5 @@
 function agregardatos(nombre,apellido,lpu,sexo,origen,fechaingreso,egraloj,edad,nacionalidad,motivo,
-	tipoingreso,fechanacimiento,condsexual,civil,sitlegal,juzgado,delito,articulo){
+	tipoingreso,fechanacimiento,condsexual,civil,sitlegal,juzgado,delito,articulo){ // AGREGAR TABLA
 
 	cadena="nombre=" + nombre + 
 			"&apellido=" + apellido +
@@ -37,9 +37,7 @@ function agregardatos(nombre,apellido,lpu,sexo,origen,fechaingreso,egraloj,edad,
 	});
 }
 
-function agregaform(datos){
-
-	var include = "abc.php";
+function agregaform(datos){ // AUTOCOMPLETAR TABLA
 
 	d=datos.split('||');
 
@@ -150,5 +148,38 @@ function eliminarDatos(id){
 		});
 }
 
+function agregardatosAlt(motivoalt,lesionalt,fechaalt){ // AGREGAR TABLA ALTERACION
 
+	cadena="motivoalt=" + motivoalt + 
+			"&lesionalt=" + lesionalt +
+			"&fechaalt=" + fechaalt;
 
+	$.ajax({
+		type:"POST",
+		url:"php/agregarAlt.php",
+		data:cadena,
+		success:function(r){
+			if(r==1){
+				$('#tabla').load('componentes/tabla.php');
+				$('#tabla-detalles').load('componentes/tabla-detalles.php');
+				alertify.success("agregado con exito :)");
+			}else{
+				alertify.error("Fallo el servidor :(");
+			}
+		}
+	})
+}
+
+function agregaformalt(datos){ // AUTOCOMPLETAR TABLA ALTERACION
+
+	d=datos.split('||');
+
+	$('#title').val(d[1] + ' ' + d[2] + ' ' + '(' + 'L.P.U.' + ' ' + d[3] + ')'); 
+
+}
+
+function idTableAlt() {
+
+	$('#tabla-alteracion').load('componentes/tabla-alteracion.php');
+	
+}

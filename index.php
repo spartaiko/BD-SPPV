@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head> <!-- HEAD -->
   <!-- INICIO - META NO CACHE -->
     <meta http-equiv="Cache-control" content="no-store">
     <meta http-equiv="cache-control" content="max-age=0" />
     <meta http-equiv="cache-control" content="no-cache" />
     <meta http-equiv="expires" content="0" />
-    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
     <meta http-equiv="pragma" content="no-cache" />
   <!-- FIN - META NO CACHE -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -524,6 +523,85 @@
 
 <!-- FIN -- Modal para edicion de datos -->
 
+<!-- INICIO -- Modal para alteracion -->
+  <div class="modal fade" id="modalAlteracion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 80% !important;">
+          <div class="modal-content">
+              <div class="modal-header" style="background-color: #E1E5E3;"> <!-- MODAL HEADER -->
+
+                <div class="row">
+
+                  <div class="col-md-8"><input type="text" name="" class="form-control input-sm" id="title" 
+                  style="background: none;
+                          border: none;
+                          font-size: large;
+                          font-weight: bold;
+                          box-shadow: none;" disabled></div>
+                  
+                  <div class="col-md-4"><button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button></div>
+
+                </div>
+
+              </div>
+                  
+              <div class="modal-body">
+
+                <div class="form-group"> <!-- TABLA Y CAMPOS -->
+                  <div class="row">
+
+                    <div class="col-md-6">
+
+                      <label>Fecha/Hora</label><!--FECHA/HORA-->
+                      <input type="datetime-local" name="" class="form-control input-sm" id="fechaalt">
+                    
+                    </div>
+
+                    <div class="col-md-6">
+
+                      <label>Motivo</label> <!--MOTIVO-->
+                      <select name="" class="form-control input-sm pull-right" id="motivoalt">
+                        <option></option>
+                        <option>DESCOMPENSACION</option>
+                        <option>PELEA</option>
+                        <option>INTENTO SUICIDIO</option>
+                        <option>AUTOLESION</option>
+                        <option>OTRO</option>
+                      </select><br>
+                    
+                    </div>
+
+                    <div class="col-md-12">
+
+                      <label>Descripcion</label> <!--LESION-->
+                      <input type="text" name="" class="form-control input-sm" id="lesionalt" placeholder="Describir lesion"
+                      style="font-size:25px;">
+
+                    </div><br>
+
+                    <div class="col-md-12">
+
+                      <label></label> <!--BOTON-->
+                      <button type="button" class="btn btn-primary" id="guardarnuevoAlt"
+                      style="float: right; margin-top: 10px;">
+                      Agregar
+                      </button>
+
+                    </div>
+
+                  </div>
+                  
+                </div>
+                <hr>
+                <div id="tabla-alteracion"></div>
+
+              </div>
+
+          </div>
+      </div>
+  </div>
+<!-- FIN -- Modal para alteracion -->
+
 <!-- MODALS DETALLES -->
 
   <!-- INICIO -- Modal ALOJADOS -->
@@ -642,14 +720,13 @@
   <!-- FIN -- Modal CONDENADOS--> 
 
 <!-- MODALS DETALLES -->
-   
 
 </body>
 <!-- Footer -->
   <footer class="page-footer font-small blue">
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2018 by #
+    <div class="footer-copyright text-center py-3">© 2018 creado por
       <a href="#">Ayte. 3ra Juan G. MAGARINOS (C.34424)</a>
     </div>
     <!-- Copyright -->

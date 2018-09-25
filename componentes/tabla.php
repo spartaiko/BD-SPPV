@@ -22,12 +22,12 @@
 			},	
 			"rowCallback": function(row, data, index){
 				if(data[5].toUpperCase() == 'EGRESADO'){
-					$(row).find('td:eq(0)').css('background-color', '#EF7674'),
-					$(row).find('td:eq(1)').css('background-color', '#EF7674'),
-					$(row).find('td:eq(2)').css('background-color', '#EF7674'),
-					$(row).find('td:eq(3)').css('background-color', '#EF7674'),
-					$(row).find('td:eq(4)').css('background-color', '#EF7674'),
-					$(row).find('td:eq(5)').css('background-color', '#EF7674');
+					$(row).find('td:eq(0)').css('background-color', '#F5B2B3'),
+					$(row).find('td:eq(1)').css('background-color', '#F5B2B3'),
+					$(row).find('td:eq(2)').css('background-color', '#F5B2B3'),
+					$(row).find('td:eq(3)').css('background-color', '#F5B2B3'),
+					$(row).find('td:eq(4)').css('background-color', '#F5B2B3'),
+					$(row).find('td:eq(5)').css('background-color', '#F5B2B3');
 				}
 			},
 			"columnDefs": [
@@ -43,8 +43,7 @@
 <?php 
 	require_once "../php/conexion.php";
 	$conexion=conexion();
-
- ?>
+?>
 <div class="row">
 	<div class="col-sm-12">
 		<table class="table table-hover table-condensed table-bordered">
@@ -104,7 +103,7 @@
 					</a>
 					
 					<a class="btn" data-toggle="modal" 
-					data-target="#modalLesion" onclick="#">
+					data-target="#modalAlteracion" onclick="agregaformalt('<?php echo $datos ?>'); idTableAlt('<?php echo $ver[0] ?>')">
 					<i class='fas fa-file-medical' style='color:#F99922;'></i>
 					</a>
 					
